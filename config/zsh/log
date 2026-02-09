@@ -1,0 +1,79 @@
+#!/usr/bin/env zsh
+# --------------------------------------------------------------------------
+#   ZSH → Log
+#   A custom set of functions for pretty logging.
+#   @note Usually I organize both files and functions alphabetically,
+#         however this file is ordered by importance and/or hierarchy
+#         for the functions themselves (e.g. "intro" comes first).
+# --------------------------------------------------------------------------
+
+
+#   Section headers
+#   Pre-styled headers for specific situations or needs.
+# ------------------------------------------------------------
+
+# Log intro flag; should be used once per script.
+# @usage log_intro "Hello world".
+log_intro() {
+  printf "\n${bold}${bg_magenta}${white}      $1      ${reset}\n\n";
+}
+
+# Log header text; should be used for each script section.
+# @usage log_header "Hello world".
+log_header() {
+  printf "\n${bold}${bg_magenta}${white}==========  %s  ==========${reset}\n" "$@"
+}
+
+# Log error message.
+# @usage log_error "Hello world".
+log_error() {
+	printf "\n";
+  printf "${underline}${bold}${red}✖ ERROR ${reset}\n"
+	printf "${red}%s${reset}\n" "_____________________________________________";
+  printf "${red}%s${reset}\n" "$@";
+  printf "\n";
+}
+
+# Log success message.
+# @usage log_success "Hello world".
+log_success() {
+	printf "\n";
+  printf "${underline}${bold}${green}✔ SUCCESS ${reset}\n"
+  printf "${green}%s${reset}\n" "$@";
+  printf "\n";
+}
+
+# Log note; should be used for listing items.
+# @usage log_note "Hello world".
+log_note() {
+  printf "\n${green}➜${reset}  ${underline}${bold}${white}%s${reset}\n" "$@"
+}
+
+# Log prompt option.
+# @usage log_option "Hello world".
+log_option() {
+  printf "${white}%s${reset}\n" "$@"
+}
+
+# Log warning message.
+# @usage log_warning "Hello world".
+log_warning() {
+  printf "${tan}➜ %s${reset}\n" "$@"
+}
+
+
+#   Inline styling
+#   Functions to custom-format text.
+# ------------------------------------------------------------
+
+# Log bold.
+# @usage log_bold "Hello world".
+log_bold() {
+  printf "${bold}%s${reset}\n" "$@"
+}
+
+# Log underlined text.
+# @usage log_underlined-text "Hello world".
+log_underlined_text() {
+  printf "${underline}${bold}%s${reset}\n" "$@"
+}

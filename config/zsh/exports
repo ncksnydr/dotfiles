@@ -1,0 +1,145 @@
+#!/usr/bin/env zsh
+# --------------------------------------------------------------------------
+#   ZSH → Exports
+#   Exports are global settings for each ZSH session.
+# --------------------------------------------------------------------------
+
+#   A
+# ------------------------------------------------------------
+export ANDROID_HOME=$HOME/Library/Android/sdk
+
+#   B
+# ------------------------------------------------------------
+# Hide the "default interactive shell is now zsh" warning on macOS.
+export BASH_SILENCE_DEPRECATION_WARNING=1;
+
+#   C
+# ------------------------------------------------------------
+
+#   D
+# ------------------------------------------------------------
+# export DOCKER_DEFAULT_PLATFORM=linux/amd64
+
+#   E
+# ------------------------------------------------------------
+# Set default editor to Nano (haters gon" hate).
+# @see .env
+export EDITOR=$EDITOR
+
+#   F
+# ------------------------------------------------------------
+# Set FPATH for ZSH.
+if (( ! ${fpath[(I)/usr/local/share/zsh/site-functions]} )); then
+  FPATH=/usr/local/share/zsh/site-functions:$FPATH
+fi
+
+#   G
+# ------------------------------------------------------------
+# Avoid issues with `gpg` as installed via Homebrew.
+# @see https://stackoverflow.com/a/42265848/96656
+export GPG_TTY=$(tty);
+
+#   H
+# ------------------------------------------------------------
+# Set the Homebrew prefix.
+export HOMEBREW_PREFIX="$(brew --prefix)";
+
+# Increase Bash history size. Allow 32³ entries the default is 500.
+export HISTSIZE="32768"
+export HISTFILESIZE="$HISTSIZE"
+
+# Omit duplicates and commands that begin with a space from history.
+export HISTCONTROL="ignoreboth"
+
+#   I
+# ------------------------------------------------------------
+
+#   J
+# ------------------------------------------------------------
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home
+
+
+#   K
+# ------------------------------------------------------------
+
+#   L
+# ------------------------------------------------------------
+# Set preferered language to US English and use UTF-8.
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+
+# Highlight section titles in manual pages.
+export LESS_TERMCAP_md="$yellow"
+
+#   M
+# ------------------------------------------------------------
+# Prevent the screen from clearing when exiting a manual.
+export MANPAGER="less -X"
+
+#   N
+# ------------------------------------------------------------
+
+# Set directory for Node Version Manager.
+export NVM_DIR="$HOME/.nvm"
+
+# Allow 32³ entries the default is 1000.
+export NODE_REPL_HISTORY_SIZE="32768"
+
+# Use sloppy mode by default, matching web browsers.
+export NODE_REPL_MODE="sloppy"
+
+
+#   O
+# ------------------------------------------------------------
+
+#   P
+# ------------------------------------------------------------
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
+export PYTHONIOENCODING="UTF-8"
+
+
+#   Q
+# ------------------------------------------------------------
+
+#   R
+# ------------------------------------------------------------
+
+#   S
+# ------------------------------------------------------------
+export SBOT_DIR="/Users/nsnyder/Sites/60-69.Projects/62.Web/62.02.sbot/development"
+
+#   T
+# ------------------------------------------------------------
+
+# Set Teidur home path.
+export TEIDUR_DIR="$HOME/Sites/00-09.System-management/02.Scripts"
+
+
+# Set timezone.
+export TZ=$TIMEZONE
+
+#   U
+# ------------------------------------------------------------
+# Set how often to auto-update ZSH (in days).
+export UPDATE_ZSH_DAYS=$ZSH_UPDATE_DAYS
+
+#   V
+# ------------------------------------------------------------
+
+#   W
+# ------------------------------------------------------------
+
+#   X
+# ------------------------------------------------------------
+
+#   Y
+# ------------------------------------------------------------
+
+#   Z
+# ------------------------------------------------------------
+# Set OhMyZSH home path.
+export ZSH="$HOME/.oh-my-zsh"

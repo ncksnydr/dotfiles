@@ -1,0 +1,20 @@
+# --------------------------------------------------------------------------
+#   ZSH → OhMyZSH → Plugins → URL Tools
+#   @see https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/urltools
+# --------------------------------------------------------------------------
+
+# URL-decodes the given string.
+function decode-url {
+	if [ $# -eq 0 ]; then
+		log-error "Please provide a URL to decode."
+	fi
+	urldecode "$1"
+}
+
+# URL-encodes the given string.
+function encode-url {
+	if [ $# -eq 0 ]; then
+		log-error "Please provide a URL to encode."
+	fi
+	urlencode "$1"
+}

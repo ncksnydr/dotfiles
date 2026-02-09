@@ -1,0 +1,164 @@
+{
+  //  Core → Editor
+  //------------------------------------------------------
+  "editor.accessibilitySupport": "off",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.fontFamily": "'Cascadia Code PL', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "editor.fontLigatures": true,
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "all",
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+
+  //  Core → Files
+  //------------------------------------------------------
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/.git": false,
+    "**/.hg": true,
+    "**/.svn": true,
+  },
+
+  //  Core → Security
+  //------------------------------------------------------
+  "security.workspace.trust.untrustedFiles": "open",
+
+  //  Core → Terminal
+  //------------------------------------------------------
+  "terminal.integrated.allowedLinkSchemes": [
+    "file",
+    "http",
+    "https",
+    "mailto",
+    "vscode",
+    "vscode-insiders",
+    "docker-desktop",
+  ],
+
+  //  Core → Workbench
+  //------------------------------------------------------
+  "workbench.colorTheme": "Winter is Coming (Dark Blue)",
+  "workbench.activityBar.location": "hidden",
+  "workbench.iconTheme": "vscode-great-icons",
+  "workbench.settings.applyToAllProfiles": [],
+  "workbench.startupEditor": "none",
+
+  //  Extensions → Better Comments
+  //------------------------------------------------------
+  "better-comments.tags": [
+    {
+      "tag": "todo",
+      "color": "#4FFF42",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false,
+    },
+    {
+      "tag": "fixme",
+      "color": "#9341FF",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false,
+    },
+    {
+      "tag": "note",
+      "color": "#FF9341",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false,
+    },
+  ],
+
+  //  Extensions → ESLint
+  //------------------------------------------------------
+
+  //  Extensions → Git
+  //------------------------------------------------------
+  "git.openRepositoryInParentFolders": "never",
+  "git.autofetch": true,
+
+  //  Extensions → Github
+  //------------------------------------------------------
+  "github.copilot.editor.enableAutoCompletions": true,
+
+  //  Extensions → Markdown
+  //------------------------------------------------------
+  "markdown.extension.orderedList.autoRenumber": false,
+  "markdown.extension.orderedList.marker": "one",
+
+  //  Extensions → Markdown Preview
+  //------------------------------------------------------
+  "markdown-preview-github-styles.colorTheme": "light",
+
+  //  Extensions → Prettier
+  //------------------------------------------------------
+
+  //  Extensions → Redhat
+  //------------------------------------------------------
+  "redhat.telemetry.enabled": false,
+
+  //  Languages → CSS
+  //------------------------------------------------------
+  "[css][scss]": {},
+
+  //  Languages → JavaScript/TypeScript
+  //------------------------------------------------------
+  "[javascript][javascriptreact][typescript][typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+  },
+
+  //  Lanugages → Markdown
+  //------------------------------------------------------
+  "[markdown]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.markdownlint": "explicit",
+    },
+  },
+
+  //  Lanugages → Python
+  //------------------------------------------------------
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true,
+  },
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "chat.editing.alwaysSaveWithGeneratedChanges": true,
+  "platformio-ide.autoOpenPlatformIOIniFile": false,
+  "auto-build.defaultEnv.name": "STM32G0B1RE_btt",
+  "docker.extension.enableComposeLanguageServer": false,
+  "editor.inlineSuggest.edits.allowCodeShifting": "horizontal",
+  "editor.inlineSuggest.edits.renderSideBySide": "never",
+  "github.copilot.nextEditSuggestions.fixes": false,
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true,
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+  },
+  "claudeCode.useCtrlEnterToSend": true,
+  "claudeCode.preferredLocation": "panel",
+  "chat.viewSessions.orientation": "stacked",
+  "claudeCode.selectedModel": "claude-opus-4-5-20251101",
+}

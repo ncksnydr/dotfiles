@@ -1,0 +1,115 @@
+{
+  "blanks-around-fences": {
+    "list_items": false
+  },
+  "blanks-around-headings": {
+    "lines_above": 1,
+    "lines_below": 1
+  },
+  "blanks-around-lists": true,
+  "code-block-style": {
+    "style": "fenced"
+  },
+  "code-fence-style": {
+    "style": "backtick"
+  },
+  "commands-show-output": true,
+  "emphasis-style": {
+    "style": "underscore"
+  },
+  "fenced-code-language": {
+    "allowed_languages": [],
+    "language_only": false
+  },
+  "first-line-heading": {
+    "level": 1
+  },
+  "heading-increment": true,
+  "heading-start-left": true,
+  "heading-style": {
+    "style": "atx"
+  },
+  "hr-style": {
+    "style": "---"
+  },
+  "line-length": false,
+  "link-fragments": true,
+  "link-image-reference-definitions": false,
+  "link-image-style": {
+    "autolink": false,
+    "collapsed": false,
+    "full": true,
+    "inline": true,
+    "shortcut": true,
+    "url_inline": true
+  },
+  "list-indent": true,
+  "list-marker-space": {
+    "ol_multi": 1,
+    "ol_single": 1,
+    "ul_multi": 1,
+    "ul_single": 1
+  },
+  "no-alt-text": true,
+  "no-bare-urls": true,
+  "no-blanks-blockquote": true,
+  "no-duplicate-heading": {
+    "siblings_only": true
+  },
+  "no-emphasis-as-heading": true,
+  "no-empty-links": true,
+  "no-hard-tabs": {
+    "code_blocks": true,
+    "ignore_code_languages": [],
+    "spaces_per_tab": 2
+  },
+  "no-inline-html": false,
+  "no-missing-space-atx": true,
+  "no-multiple-blanks": {
+    "maximum": 1
+  },
+  "no-multiple-space-atx": true,
+  "no-multiple-space-blockquote": true,
+  "no-multiple-space-closed-atx": true,
+  "no-reversed-links": true,
+  "no-space-in-code": true,
+  "no-space-in-emphasis": true,
+  "no-space-in-links": true,
+  "no-trailing-punctuation": true,
+  "no-trailing-spaces": {
+    "br_spaces": 2,
+    "list_item_empty_lines": false,
+    "strict": false
+  },
+  "ol-prefix": {
+    "style": "one"
+  },
+  "proper-names": {
+    "code_blocks": true,
+    "html_elements": false,
+    "names": ["JavaScript", "TypeScript"]
+  },
+  "reference-links-images": {
+    "shortcut_syntax": true
+  },
+  "required-headings": false,
+  "single-title": {
+    "level": 1
+  },
+  "single-trailing-newline": true,
+  "strong-style": {
+    "style": "asterisk"
+  },
+  "table-column-count": true,
+  "table-pipe-style": {
+    "style": "leading_and_trailing"
+  },
+  "ul-indent": {
+    "indent": 2,
+    "start_indent": 2,
+    "start_indented": true
+  },
+  "ul-style": {
+    "style": "dash"
+  }
+}

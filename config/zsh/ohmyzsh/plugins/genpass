@@ -1,0 +1,14 @@
+# --------------------------------------------------------------------------
+#   ZSH → OhMyZSH → Plugins → GenPass
+#   @see https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/genpass
+# --------------------------------------------------------------------------
+
+# Generates a pronounceable pseudoword passphrase of the "cvccvc" consonant/vowel syntax.
+alias generate-password-apple="genpass-apple"
+
+# Generates visually unambiguous random meaningless strings using Crockford's base32.
+alias generate-password-monkey="genpass-apple"
+
+# Generates passphrases inspired by the famous (and slightly misleading) XKCD comic.
+# @see https://xkcd.com/936/
+alias generate-password-xkcd="genpass-xkcd"

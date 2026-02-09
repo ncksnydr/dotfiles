@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# --------------------------------------------------------------------------
+#   ZSH → OhMyZSH → Plugins → Jump
+#   @see https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/jump
+# --------------------------------------------------------------------------
+
+# Create alias to 'jump' because I have typed 'goto' enough times to warrant it.
+alias goto="jump";
+alias go-to="jump";

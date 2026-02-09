@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+
+# --------------------------------------------------------------------------
+#   ZSH → Helpers → SBOT
+# --------------------------------------------------------------------------
+
+# Starts the SBOT Docker container.
+function sbot-docker {
+  cd $SBOT_DIR
+  yarn run web:secrets-prod
+  cd $SBOT_DIR/docker
+  sudo ./buildstartdocker.scr -mp
+}
+
+function sbot-docker-dev {
+  cd $SBOT_DIR
+  yarn run web:secrets-dev
+  cd $SBOT_DIR/docker
+  sudo ./buildstartdocker.scr -md
+}

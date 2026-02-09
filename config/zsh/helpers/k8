@@ -1,0 +1,21 @@
+#!/usr/bin/env zsh
+
+# --------------------------------------------------------------------------
+#   ZSH → Helpers → K8
+# --------------------------------------------------------------------------
+
+function k8-get {
+  kubectl get pods -n prod
+}
+
+function k8-get-dev {
+  kubectl get pods -n dev
+}
+
+function k8-logs {
+  kubectl logs -n prod $1 | less
+}
+
+function k8-logs-dev {
+  kubectl logs -n dev $1 | less
+}

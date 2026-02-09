@@ -1,0 +1,248 @@
+# --------------------------------------------------------------------------
+#   Git → Attributes
+# --------------------------------------------------------------------------
+
+
+# Set all files to "text=auto" by default
+* text=auto
+
+#
+#   Line-endings
+# --------------------------------------------------------------------------
+# Archives
+*.7z              binary
+*.gz              binary
+*.jar             binary
+*.rar             binary
+*.tar             binary
+*.zip             binary
+
+# Audio
+*.kar             binary
+*.m4a             binary
+*.mid             binary
+*.midi            binary
+*.mp3             binary
+*.ogg             binary
+*.ra              binary
+
+# Configuration files (e.g. .eslintrc or .gitignore).
+.editorconfig     text
+.env              text export-ignore
+.gitattributes    text linguist-language=gitattributes export-ignore
+.gitconfig        text export-ignore
+.gitkeep          text export-ignore
+.htaccess         text
+*.*ignore         text
+*.*rc             text
+*.cnf             text
+*.conf            text
+*.config          text
+*.lock            text -diff
+*.toml            text
+*.yaml            text
+*.yml             text
+browserslist      text
+Makefile          text
+makefile          text
+package-lock.json text -diff
+package.json      text eol=lf
+pnpm-lock.yaml    text eol=lf -diff
+yarn.lock         text -diff
+
+# Documentation & common working files
+*.csv      text
+*.doc      diff=astextplain
+*.DOC      diff=astextplain
+*.docx     diff=astextplain
+*.DOCX     diff=astextplain
+*.markdown        text diff=markdown
+*.md              text diff=markdown
+*.mdown           text diff=markdown
+*.mdtext          text
+*.mdtxt           text
+*.mdwn            text diff=markdown
+*.mkd             text diff=markdown
+*.mkdn            text diff=markdown
+*.pdf      diff=astextplain
+*.PDF      diff=astextplain
+*.rtf      diff=astextplain
+*.RTF      diff=astextplain
+*.sql      text
+*.txt             text
+*.txt      text
+*COPYRIGHT*       text
+*README*          text
+AUTHORS           text
+CHANGELOG         text export-ignore
+CHANGES           text export-ignore
+CONTRIBUTING      text
+COPYING           text
+copyright         text
+INSTALL           text
+license           text
+LICENSE           text
+NEWS              text
+readme            text
+TODO              text export-ignore
+
+# Font files
+*.ttf             binary
+*.eot             binary
+*.otf             binary
+*.woff            binary
+*.woff2           binary
+
+# Graphics
+*.ai              binary
+*.bmp             binary
+*.eps             binary
+*.gif             binary
+*.gifv            binary
+*.ico             binary
+*.jng             binary
+*.jp2             binary
+*.jpg             binary
+*.jpeg            binary
+*.jpx             binary
+*.jxr             binary
+*.pdf             binary
+*.png             binary
+*.psb             binary
+*.psd             binary
+*.svg             text
+*.svgz            binary
+*.tif             binary
+*.tiff            binary
+*.wbmp            binary
+*.webp            binary
+
+# Source code
+*.bash            text eol=lf
+*.bat             text eol=crlf
+*.cmd             text eol=crlf
+*.coffee          text
+*.css             text diff=css linguist-vendored
+Dockerfile        text
+*.dot             text
+*.ejs             text
+*.haml            text
+*.handlebars      text
+*.hbs             text
+*.hbt             text
+*.htm             text diff=html
+*.html            text diff=html
+*.inc             text
+*.ini             text
+*.jade            text
+*.js              text diff=javascript linguist-vendored
+*.json            text
+*.jsx             text
+*.latte           text
+*.less            text diff=css linguist-vendored
+*.ls              text
+*.map             text -diff
+*.mustache        text
+*.njk             text
+*.od              text
+*.onlydata        text
+*.php             text diff=php linguist-vendored
+*.phtml           text
+*.pl              text
+*.ps1             text eol=crlf
+*.py              text diff=python linguist-vendored
+*.rb              text diff=ruby
+*.sass            text
+*.scm             text
+*.scss            text diff=css linguist-vendored
+*.sh              text eol=lf
+*.sql             text linguist-vendored
+*.styl            text
+*.tag             text
+*.tmpl            text
+*.tpl             text
+*.ts              text
+*.tsx             text
+*.twig            text linguist-vendored
+*.vue             text diff=javascript linguist-vendored
+*.xhtml           text diff=html linguist-vendored
+*.xml             text
+*.yaml            text diff=yaml linguist-vendored
+*.yml             text diff=yaml linguist-vendored
+
+# Video
+*.3gpp            binary
+*.3gp             binary
+*.as              binary
+*.asf             binary
+*.asx             binary
+*.fla             binary
+*.flv             binary
+*.m4v             binary
+*.mng             binary
+*.mov             binary
+*.mp4             binary
+*.mpeg            binary
+*.mpg             binary
+*.ogv             binary
+*.swc             binary
+*.swf             binary
+*.webm            binary
+
+
+#   Other: MATLAB
+# ------------------------------------------------------------
+*.m             text diff=matlab
+*.mu            text diff=matlab
+
+# Binaries
+*.p             binary
+*.mex*          binary
+*.fig           binary
+*.mat           binary
+*.mdl           binary
+*.slx           binary
+*.mdlp          binary
+*.slxp          binary
+*.sldd          binary
+*.mltbx         binary
+*.mlappinstall  binary
+*.mlpkginstall  binary
+*.mn            binary
+
+
+#   Other: Python
+# ------------------------------------------------------------
+*.pxd    text diff=python
+*.py     text diff=python linguist-vendored
+*.py3    text diff=python linguist-vendored
+*.pyw    text diff=python
+*.pyx    text diff=python
+*.pyz    text diff=python
+*.pyi    text diff=python
+
+# Binaries
+*.db     binary
+*.p      binary
+*.pkl    binary
+*.pickle binary
+*.pyc    binary
+*.pyd    binary
+*.pyo    binary
+
+# Jupyter notebook
+*.ipynb  text
+
+
+#   Other: R
+# ------------------------------------------------------------
+*.Rdata binary linguist-vendored
+*.RData binary linguist-vendored
+*.rda   binary
+*.rdb   binary
+*.rds   binary
+*.Rd    text
+*.Rdx   binary
+*.Rmd	  text
+*.R  	  text linguist-vendored
+*.Rproj text linguist-vendored

@@ -1,0 +1,37 @@
+# --------------------------------------------------------------------------
+#   ZSH → OhMyZSH → Plugins → Encode64
+#   @see https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/encode64
+# --------------------------------------------------------------------------
+
+
+# Encode a file's contents to base64 and save output to text file.
+function decode-file {
+	if [ $# -eq 0 ]; then
+		log-error "Please include a filename to decode."
+	fi
+	decodefile64 $1
+}
+
+# Encode a string to base64.
+function decode-string {
+	if [ $# -eq 0 ]; then
+		log-error "Please include a string to decode."
+	fi
+	decode64 "$1"
+}
+
+# Encode a file's contents to base64 and save output to text file.
+function encode-file {
+	if [ $# -eq 0 ]; then
+		log-error "Please include a filename to encode."
+	fi
+	encodefile64 $1
+}
+
+# Encode a string to base64.
+function encode-string {
+	if [ $# -eq 0 ]; then
+		log-error "Please include a string to encode."
+	fi
+	encode64 "$1"
+}

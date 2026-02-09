@@ -1,0 +1,6 @@
+[sendemail]
+	smtpencryption = 
+	smtpserver = 
+	smtpuser = 
+	smtppass = 
+	smtpserverport = 

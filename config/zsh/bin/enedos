@@ -1,0 +1,59 @@
+#!/usr/bin/env zsh
+
+# --------------------------------------------------------------------------
+#   ZSH → bin → Enedos (Homelab)
+# --------------------------------------------------------------------------
+
+source /Users/nsnyder/.env
+source $DOTFILES_PATH_ZSH/log
+
+# Set variables
+MODE="ssh"
+TARGET=""
+
+# Declare and set nodes
+declare -A NODES
+
+NODES["1"]="10.0.1.45"
+NODES["2"]="10.0.1.46"
+NODES["3"]="10.0.1.47"
+NODES["4"]="10.0.1.48"
+NODES["5"]="10.0.1.49"
+NODES["6"]="10.0.1.50"
+NODES["7"]="10.0.1.51"
+NODES["8"]="10.0.1.52"
+NODES["9"]="10.0.1.53"
+NODES["10"]="10.0.1.90"
+
+log_intro "Enedos"
+
+# Check arguments
+while getopts "n:r" flag; do
+    case ${flag} in
+		n) TARGET="$OPTARG"
+    ;;
+    r) MODE="reboot"
+    ;;
+    *) echo "Invalid option"; exit 1 ;;
+    esac
+done
+
+if [[ $MODE == 'ssh' && -z $TARGET ]]; then
+  log_error "SSH mode needs a node. Run again with -n option."
+  exit 1
+fi
+
+
+if [[ $MODE == 'ssh' ]]; then
+  log_note "Connecting to ${NODES[$TARGET]}..."
+  ssh $ENEDOS_USER@$NODES[$TARGET]
+fi
+
+
+if [[ $MODE == 'reboot' ]]; then
+  for IP in "${(@v)NODES}"; do
+    log_note "Rebooting $IP..."
+		ssh -i $SSH_KEY -t $ENEDOS_USER@$IP "systemctl reboot";
+	done
+  log-success "Enedos rebooted.";
+fi

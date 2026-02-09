@@ -1,0 +1,35 @@
+#!/usr/bin/env zsh
+
+# --------------------------------------------------------------------------
+#   ZSH → bin → 4C
+# --------------------------------------------------------------------------
+source /Users/nsnyder/.env
+source $DOTFILES_PATH_ZSH/log
+
+# Set variables
+SINGLE_SHOT="false"
+
+# Intro
+log_intro "4C"
+
+# Check for mounted drive
+if ! [[ -d "$VOL_THIN_4C" && -r "$VOL_THIN_4C" && -x "$VOL_THIN_4C" ]]; then
+    log_error "Volume not mounted, dummy."
+    exit 1
+fi
+
+# Check arguments
+while getopts "s" flag; do
+    case ${flag} in
+    s) SINGLE_SHOT="true"
+    ;;
+    esac
+done
+
+# Main
+cd $VOL_THIN_4C
+if [[ $SINGLE_SHOT == 'true' ]]; then
+    4chan --threads --single-shot "$1"
+else
+    4chan --threads "$1"
+fi

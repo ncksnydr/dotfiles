@@ -1,0 +1,36 @@
+#!/usr/bin/env zsh
+# --------------------------------------------------------------------------
+#   ZSH → Helpers → Web
+#   @see https://bit.ly/2AD7bYb
+# --------------------------------------------------------------------------
+
+# Create README.md
+# @usage create-readme
+alias create-readme="npx readme-md-generator";
+
+
+# Flushes the DNS cache.
+# @usage flush-dns
+alias flush-dns='dscacheutil -flushcache && killall -HUP mDNSResponder';
+alias clear-dns='flush-dns';
+alias dns-clear='flush-dns';
+
+
+# Returns the current public IP address.
+# @usage get-ip
+# @returns 12.34.567.89
+alias get-ip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+
+# Returns active network interfaces.
+# @usage get-network-interfaces
+alias get-network-interfaces="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
+alias network-interfaces='get-network-interfaces';
+
+
+# Removes all `vendor` and `node_modules` directories and files (relative to the current directory).
+# @see ./create/create-archive
+function remove-vendor-files {
+	find . -name {node_modules,vendor} -type d -exec rm -r {} +;
+	log-success "All vendor and node_modules directories removed.";
+}

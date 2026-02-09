@@ -1,0 +1,25 @@
+#!/usr/bin/env zsh
+# --------------------------------------------------------------------------
+#   ZSH → Helpers → Brew
+# --------------------------------------------------------------------------
+
+# Restart service(s).
+alias brew-restart="brew services restart";
+alias brew-restart-all="brew services restart --all";
+
+# Start service(s).
+alias brew-start="brew services start"
+alias brew-start-all="brew services start --all"
+
+# Stop service(s).
+alias brew-stop="brew services stop"
+alias brew-stop-all="brew services stop --all"
+
+# Run update, outdated, upgrade, and cleanup.
+alias brew-update='brew update && brew outdated && brew upgrade && brew cleanup';
+
+function brew-unload {
+	sudo launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.$1.plist;
+	sudo launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.$1.plist;
+	sudo brew services start $1;
+}

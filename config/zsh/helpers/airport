@@ -1,0 +1,34 @@
+#!/usr/bin/env zsh
+
+# --------------------------------------------------------------------------
+#   ZSH → Helpers → Apple Airport
+#   @note You will need to create a symlink to use these utilities.
+#   @see https://www.itdojo.com/osx-airport-cli-tool-not-just-for-airport-aps/
+# --------------------------------------------------------------------------
+
+# Returns information about the current WiFi network.
+alias airport-get-info="airport -I"
+alias wifi-get-info="airport-get-info"
+
+# Returns preferences about the current WiFi network.
+alias airport-get-preferences="airport prefs"
+alias wifi-get-preferences="airport prefs"
+
+# airport-get-psk
+# @usage airport-get-psk network_name network_password
+function airport-get-psk {
+	if [ $# -eq 0 ]; then
+		log-error "No arguments provided. Please provide both an SSID and Password. Example `airport-get-psk network_name network_password`.";
+	elif [ $# -eq 1 ]; then
+		log-error "Missing argument. Please provide both an SSID and Password. Example `airport-get-psk network_name network_password`.";
+	else
+		SSID=$(convert-string-to-lowercase $1);
+		PSWD="$2";
+		airport -P --ssid=$SSID --password=$PSWD;
+	fi
+}
+alias wifi-get-psk="airport-get-psk"
+
+# Disconnects from WiFi.
+alias airport-kill-wifi="airport -z"
+alias wifi-kill="airport-kill-wifi"

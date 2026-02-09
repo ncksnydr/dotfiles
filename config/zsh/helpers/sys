@@ -1,0 +1,351 @@
+#!/usr/bin/env zsh
+# --------------------------------------------------------------------------
+#   ZSH → Helpers → System
+#   @see https://bit.ly/2AD7bYb
+# --------------------------------------------------------------------------
+
+#   A
+# ------------------------------------------------------------
+
+#   B
+# ------------------------------------------------------------
+
+#   C
+# ------------------------------------------------------------
+
+# Converts spaces in a string to hyphens.
+# @usage convert-spaces-to-kebab "Hello World"
+# @returns Hello-World
+function convert-spaces-to-kebab {
+  echo ${1// /-};
+}
+alias spaces-to-kebab='convert-spaces-to-kebab';
+
+# Converts spaces in a string to underscores.
+# @usage convert-spaces-to-underscore "Hello World"
+# @returns Hello_World
+function convert-spaces-to-underscore {
+  echo ${1// /_};
+}
+alias spaces-to-underscore='convert-spaces-to-underscore';
+
+# Converts characters in a string to lowercase.
+# @usage convert-string-to-lowercase "Hello World"
+# @returns hello world
+function convert-string-to-lowercase {
+  echo "$1" | tr '[:upper:]' '[:lower:]';
+}
+alias string-to-lowercase='convert-string-to-lowercase';
+
+# Converts a string to a URL-friendly slug (i.e. make lowercase and replace spaces).
+# @usage convert-string-to-slug "Hello World"
+# @returns hello-world
+function convert-string-to-slug {
+  RAW=$1;
+  TYPE=$2;
+
+  # Remove punctuation.
+  RAW_PUNC="$(remove_punctuation $RAW)";
+
+  # Set to lowercase.
+  RAW_LC="$(to_lower $RAW_PUNC)";
+
+  # Check for modifier; add kebab or underscore.
+  if [ -z $TYPE ]; then
+    RAW_SLUG="$(kebab $RAW_LC)";
+  else
+    if [ $TYPE = '--underscore' ]; then
+      RAW_SLUG="$(underscore $RAW_LC)";
+    else
+      RAW_SLUG="$(kebab $RAW_LC)";
+    fi
+  fi
+
+  echo $RAW_SLUG;
+}
+alias string-to-slug='convert-string-to-slug';
+
+# Converts characters in a string to uppercase.
+# @usage convert-string-to-uppercase "Hello World"
+# @returns HELLO WORLD
+function convert-string-to-uppercase {
+  echo "$1" | tr '[:lower:]' '[:upper:]';
+}
+alias string-to-uppercase='convert-string-to-uppercase';
+
+# Counts the number of files in the current directory.
+# @usage count-files
+# @returns 6
+alias count-files='echo $(ls -1 | wc -l)';
+
+# Removes `.DS_Store` files, `node_module`/`vendor` directories, and then creates `.zip` of directory.
+# @usage create-archive
+# @returns `.zip` file.
+function create-archive {
+	echo $(remove-dsstore);
+	echo $(remove-vendor-files);
+	zip -r "archive_$(date +%Y-%m-%d).zip" . ;
+}
+alias create-zip='create-archive';
+
+# Creates a data/MIME type URL from the provided file.
+# @usage create-data-url text.txt
+# @returns data:inode/x-empty;base64,
+function create-data-url {
+	local mimeType=$(file -b --mime-type "$1");
+	if [[ $mimeType == text/* ]]; then
+		mimeType="${mimeType};charset=utf-8";
+	fi
+	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
+}
+
+
+#   D
+# ------------------------------------------------------------
+
+#   E
+# ------------------------------------------------------------
+
+#   F
+# ------------------------------------------------------------
+
+# Flushes the Shell history.
+alias flush-history="history -p";
+alias clear-history='flush-history';
+alias history-clear='flush-history';
+
+
+#   G
+# ------------------------------------------------------------
+
+# Generate a 64 character secret key without a Rakefile.
+function generate-secret-key {
+	ruby -e "require 'securerandom'; puts SecureRandom.hex(64)";
+}
+alias get-secret-key=generate-secret-key;
+
+
+# Returns which program(s) are hogging CPU.
+# @usage get-cpu-hogs
+alias get-cpu-hogs='ps wwaxr -o pid,stat,%cpu,time,command | head -10';
+alias cpu-hogs='get-cpu-hogs';
+
+# Searches current directory and sub-directories for the string provided.
+# @usage get-directory-location bin
+# @returns ./config/shell/bin
+function get-directory-location {
+	find . -type d -name $@;
+}
+
+# Returns a list of all directories that contain the file name provided.
+# @usage get-file-location convert-audio
+# @returns ./config/shell/bin/convert-audio
+function get-file-location {
+	find . -name $1 | xargs -n1 dirname
+}
+
+# Open a specified man page in Preview app.
+alias get-man="man-preview"
+
+# Returns a list of which program(s) are hogging memory.
+# @usage get-memory-hogs
+# @returns list of straight-up H A W G S
+alias get-memory-hogs='top -l 1 -o rsize | head -20';
+alias memory-hogs='get-memory-hogs';
+
+# Returns the PID(s) for the program provided.
+# @usage get-pid mariadb
+# @returns 1234
+function get-pid {
+	lsof -t -c "$@";
+}
+
+# Returns a randomized string of character (30 characters long by default).
+# @usage get-random-string 12
+# @returns 6djKOXfbR6NF80X4
+function get-random-string {
+  NUM=30;
+  TYPE=base64
+
+  # Check if parameter one was passed and is a valid number.
+  if ! [[ -z $1 ]]; then
+    NUM_REGEX='^[0-9]+$'
+    if [[ $1 =~ $NUM_REGEX ]] ; then
+      NUM=$1;
+    fi
+  fi
+
+  # Check if parameter two was passed and is a valid option.
+  if ! [[ -z $2 ]]; then
+    if [ $2 = 'hex' ] || [ $2 = 'base64' ]; then
+      TYPE=$2;
+    fi
+  fi
+
+  echo $(openssl rand -$TYPE $NUM);
+}
+alias random-string='get-random-string';
+alias ran-str='get-random-string';
+
+# Determine size of a file or total size of a directory
+# @usage get-size
+# @returns 4.0K	.env
+function get-size {
+	if du -b /dev/null > /dev/null 2>&1; then
+		local arg=-sbh;
+	else
+		local arg=-sh;
+	fi
+	if [[ -n "$@" ]]; then
+		du $arg -- "$@";
+	else
+		du $arg .[^.]* ./*;
+	fi;
+}
+
+# Returns number of the current week.
+# @usage get-week
+# @returns 30
+alias get-week='date +%V';
+
+
+#   H
+# ------------------------------------------------------------
+
+#   I
+# ------------------------------------------------------------
+
+#   J
+# ------------------------------------------------------------
+
+#   K
+# ------------------------------------------------------------
+
+#   L
+# ------------------------------------------------------------
+
+#   M
+# ------------------------------------------------------------
+
+# Make directory then change into the newly-created directory.
+function mkcd() {
+  mkdir -p $1 && cd $1
+}
+
+
+# Merge PDF files, preserving hyperlinks, with optional name (sans .pdf).
+# @usage merge-pdfs
+# @returns A merged `.pdf` file.
+function merge-pdfs {
+	if [ $# -eq 0 ]; then
+		PDF_FILE_NAME='_merged'
+	else
+		PDF_FILE_NAME=$1
+	fi
+	gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=$PDF_FILE_NAME.pdf;
+}
+alias combine-pdfs='merge-pdfs';
+
+
+#   N
+# ------------------------------------------------------------
+
+
+#   O
+# ------------------------------------------------------------
+
+#   P
+# ------------------------------------------------------------
+
+
+#   Q
+# ------------------------------------------------------------
+
+#   R
+# ------------------------------------------------------------
+
+# Reloads the current Shell profile session.
+alias reload-shell="source $HOME/.zshrc";
+alias refresh-shell='reload-shell';
+alias shell-reload='reload-shell';
+
+# Recursively finds and deletes `.DS_Store` files.
+alias remove-dsstore="find . -name '*.DS_Store' -type f -exec rm -r {} +";
+
+# Remove punctuation from string.
+# @usage kill-punctuation "I can't wait!!!"
+# @returns I cant wait
+function remove-punctuation {
+	STR=$1 | sed -s "s/^\(\(\"\(.*\)\"\)\|\('\(.*\)'\)\)\$/\\3\\5/g"
+  echo "$STR" | tr -d '[:punct:]';
+}
+
+
+#   S
+# ------------------------------------------------------------
+
+# Set permissions for files and directories (relative to the current directory).
+function set-permissions {
+	find . -type f -exec chmod 644 {} \;
+	find . -type d -exec chmod 755 {} \;
+	log-success "Permissions set.";
+}
+
+# Lists files inside a .tar.gz file .
+function show-files-gz {
+	if [ $# -eq 0 ]; then
+		log-error "Please provide a filename."
+	fi
+	echo $1
+}
+
+# Lists files inside a .rar file.
+function show-files-rar {
+	if [ $# -eq 0 ]; then
+		log-error "Please provide a filename."
+	fi
+	unrar l $1
+}
+
+# Lists files inside a .tar file.
+function show-files-tar {
+	if [ $# -eq 0 ]; then
+		log-error "Please provide a filename."
+	fi
+	tar tf $1
+}
+
+# Lists files inside a .zip file.
+function show-files-zip {
+	if [ $# -eq 0 ]; then
+		log-error "Please provide a filename."
+	fi
+	unzip -l $1
+}
+
+
+#   T
+# ------------------------------------------------------------
+
+
+#   U
+# ------------------------------------------------------------
+
+# Make changes to the current cron file.
+# @usage update-cron
+alias update-cron="crontab -e";
+
+#   V
+# ------------------------------------------------------------
+
+#   W
+# ------------------------------------------------------------
+
+#   X
+# ------------------------------------------------------------
+
+#   Y
+# ------------------------------------------------------------
+
+#   Z
+# ------------------------------------------------------------
