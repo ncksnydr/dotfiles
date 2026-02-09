@@ -7,6 +7,7 @@
 #         for the functions themselves (e.g. "intro" comes first).
 # --------------------------------------------------------------------------
 
+source $DOTFILES_PATH_ZSH/colors
 
 #   Section headers
 #   Pre-styled headers for specific situations or needs.
@@ -15,8 +16,15 @@
 # Log intro flag; should be used once per script.
 # @usage log_intro "Hello world".
 log_intro() {
-  printf "\n${bold}${bg_magenta}${white}      $1      ${reset}\n\n";
+  printf "${bold}${magenta}%s${reset}\n" "=================================================================================";
+  printf "${bold}${magenta}   $1${reset}\n";
+  if [[ -n "$2" ]]; then
+    printf "${white}   $2${reset}\n";
+  fi
+  printf "${bold}${magenta}%s${reset}\n" "=================================================================================";
 }
+
+
 
 # Log header text; should be used for each script section.
 # @usage log_header "Hello world".
@@ -26,27 +34,33 @@ log_header() {
 
 # Log error message.
 # @usage log_error "Hello world".
-log_error() {
-	printf "\n";
-  printf "${underline}${bold}${red}✖ ERROR ${reset}\n"
-	printf "${red}%s${reset}\n" "_____________________________________________";
+log_error_exit() {
+  printf "\n"
+  printf "${red}%s${reset}\n" "=================================================================================";
+  printf "  ${bold}${red}✖ ERROR${reset}: "
   printf "${red}%s${reset}\n" "$@";
-  printf "\n";
+  printf "${red}%s${reset}\n" "=================================================================================";
+  exit 1
+}
+
+log_error() {
+  printf "\n${red}${bold}[✖ ERR  ]${reset} ${white}%s${reset}\n" "$@"
 }
 
 # Log success message.
 # @usage log_success "Hello world".
 log_success() {
-	printf "\n";
-  printf "${underline}${bold}${green}✔ SUCCESS ${reset}\n"
+  printf "\n"
+  printf "${green}%s${reset}\n" "=================================================================================";
+  printf "  ${bold}${green}✔ SUCCESS${reset}: "
   printf "${green}%s${reset}\n" "$@";
-  printf "\n";
+  printf "${green}%s${reset}\n" "=================================================================================";
 }
 
 # Log note; should be used for listing items.
 # @usage log_note "Hello world".
 log_note() {
-  printf "\n${green}➜${reset}  ${underline}${bold}${white}%s${reset}\n" "$@"
+  printf "\n${white}${bold}[➜ LOG  ]${reset} ${white}%s${reset}\n" "$@"
 }
 
 # Log prompt option.
@@ -58,7 +72,7 @@ log_option() {
 # Log warning message.
 # @usage log_warning "Hello world".
 log_warning() {
-  printf "${tan}➜ %s${reset}\n" "$@"
+  printf "\n${yellow}${bold}[! WARN ]${reset} ${white}%s${reset}\n" "$@"
 }
 
 
