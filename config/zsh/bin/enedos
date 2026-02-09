@@ -4,36 +4,24 @@
 #   ZSH → bin → Enedos (Homelab)
 # --------------------------------------------------------------------------
 
-source /Users/nsnyder/.env
+source $HOME/.env
 source $DOTFILES_PATH_ZSH/log
 
 # Set variables
+# @NOTE The following are stored in .env: $ENEDOS_USER, $NODES, $SSH_KEY
 MODE="ssh"
 TARGET=""
 
-# Declare and set nodes
-declare -A NODES
-
-NODES["1"]="10.0.1.45"
-NODES["2"]="10.0.1.46"
-NODES["3"]="10.0.1.47"
-NODES["4"]="10.0.1.48"
-NODES["5"]="10.0.1.49"
-NODES["6"]="10.0.1.50"
-NODES["7"]="10.0.1.51"
-NODES["8"]="10.0.1.52"
-NODES["9"]="10.0.1.53"
-NODES["10"]="10.0.1.90"
-
+# Intro flag
 log_intro "Enedos"
 
 # Check arguments
-while getopts "n:r" flag; do
+while getopts "n:prt" flag; do
     case ${flag} in
-		n) TARGET="$OPTARG"
-    ;;
-    r) MODE="reboot"
-    ;;
+		n) TARGET="$OPTARG" ;;
+    p) MODE="pull" ;;
+    r) MODE="reboot" ;;
+    t) MODE="test" ;;
     *) echo "Invalid option"; exit 1 ;;
     esac
 done
@@ -46,7 +34,7 @@ fi
 
 if [[ $MODE == 'ssh' ]]; then
   log_note "Connecting to ${NODES[$TARGET]}..."
-  ssh $ENEDOS_USER@$NODES[$TARGET]
+  ssh $ENEDOS_USER@$NODES["$TARGET"]
 fi
 
 
@@ -55,5 +43,20 @@ if [[ $MODE == 'reboot' ]]; then
     log_note "Rebooting $IP..."
 		ssh -i $SSH_KEY -t $ENEDOS_USER@$IP "systemctl reboot";
 	done
-  log-success "Enedos rebooted.";
+  log_success "Enedos rebooted.";
+fi
+
+if [[ $MODE == 'pull' ]]; then
+  for IP in "${(@v)NODES}"; do
+    log_note "Pulling latest for $IP..."
+		ssh -i $SSH_KEY -t $ENEDOS_USER@$IP "cd ~/enedos/helpers; git pull";
+	done
+  log_success "Enedos has latest.";
+fi
+
+if [[ $MODE == 'test' ]]; then
+  log_note "A test note"
+  log_error "A test error"
+  log_warning "A test warning"
+  log_success "A succesful test"
 fi
